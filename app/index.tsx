@@ -28,8 +28,7 @@ const Page = () => {
     loadUser();
   }, []);
 
-  // Safe the user name to async storage
-  const setUser = async () => {
+  // Safe the user name to async storagee
     let r = (Math.random() + 1).toString(36).substring(7);
     const userName = `${name}#${r}`;
     await AsyncStorage.setItem('user', userName);
