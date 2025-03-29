@@ -14,21 +14,22 @@ const Page = () => {
   const [greeting, setGreeting] = useState('');
 
   // Check if the user has a name, otherwise show modal
-  useEffect(() => {
-    const loadUser = async () => {
-      const user = await AsyncStorage.getItem('user');
-      if (!user) {
-        setTimeout(() => {
-          setVisible(true);
-        }, 100);
-      } else {
-        setName(user);
-      }
-    };
-    loadUser();
-  }, []);
+  // useEffect(() => {
+  //   const loadUser = async () => {
+  //     const user = await AsyncStorage.getItem('user');
+  //     if (!user) {
+  //       setTimeout(() => {
+  //         setVisible(true);
+  //       }, 100);
+  //     } else {
+  //       setName(user);
+  //     }
+  //   };
+  //   loadUser();
+  // }, []);
 
-  // Safe the user name to async storagee
+  // Safe the user name to async storage
+  const setUser = async () => {
     let r = (Math.random() + 1).toString(36).substring(7);
     const userName = `${name}#${r}`;
     await AsyncStorage.setItem('user', userName);
@@ -39,7 +40,7 @@ const Page = () => {
   // Load greeting using Convex action
   useEffect(() => {
     if (!name) return;
-    const loadGreeting = async () => {
+   async function  loadGreeting()  {
       const greeting = await performGetGreetingAction({ name });
       setGreeting(greeting);
     };
